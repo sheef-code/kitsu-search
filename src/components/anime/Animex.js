@@ -8,36 +8,87 @@ export default class Anime extends Component {
     return (
       <Consumer>
         {value => {
-          const { anime_list, heading } = value;
+          const {
+            categories,
+            trending_anime,
+            heading,
+            heading2,
+            heading3,
+            random_anime
+          } = value;
 
-          if (anime_list === undefined || anime_list.length === 0) {
+          if (trending_anime === undefined || trending_anime.length === 0) {
             return <Spinner />;
           } else {
             return (
               <React.Fragment>
                 <div class="container">
-                  <div className="row">
-                    <h2 className="text-left">{heading}</h2>
-                    {anime_list.slice(0, 5).map(item => (
-                      <div
-                        className="col-2dot4 col-sm-2dot4 col-md-2dot4 col-lg-2dot4 col-xl-2dot4"
-                        key={item.id}
-                      >
+                  <h2 className="text-left">{heading3}</h2>
+                  {categories.map(item => (
+                    <div
+                      className="dbg col-2dot4 col-sm-2dot4 col-md-2dot4 col-lg-2dot4 col-xl-2dot4"
+                      key={item.id}
+                    >
+                      <div className="card-body h-100 text-center align-middle">
+                        {item.attributes.title}
+                      </div>
+                      <br />
+                    </div>
+                  ))}
+                </div>
+                <div class="container">
+                  <h2 className="text-left">{heading}</h2>
+                  {trending_anime.slice(0, 5).map(item => (
+                    <div
+                      className="col-2dot4 col-sm-2dot4 col-md-2dot4 col-lg-2dot4 col-xl-2dot4"
+                      key={item.id}
+                    >
+                      <div className="card-body h-100 text-center">
                         <img
                           class="special"
                           src={item.attributes.posterImage.medium}
                           alt="Card cap"
                         />
-                        <div className="card-body text-center">
-                          <p>{item.attributes.canonicalTitle}</p>
-                          <Link to={`anime/detail/${item.id}`} className="btn">
-                            Details
-                          </Link>
-                        </div>
-                        <br />
+                        <p className="list-group-item">
+                          {item.attributes.canonicalTitle}
+                        </p>
+                        <Link
+                          to={`anime/detail/${item.id}`}
+                          className="btn list-group-item"
+                        >
+                          Details
+                        </Link>
                       </div>
-                    ))}
-                  </div>
+                      <br />
+                    </div>
+                  ))}
+                </div>
+                <div class="container">
+                  <h2 className="text-left">{heading2}</h2>
+                  {random_anime.slice(0, 5).map(item => (
+                    <div
+                      className="col-2dot4 col-sm-2dot4 col-md-2dot4 col-lg-2dot4 col-xl-2dot4"
+                      key={item.id}
+                    >
+                      <div className="card-body h-100 text-center">
+                        <img
+                          class="special"
+                          src={item.attributes.posterImage.medium}
+                          alt="Card cap"
+                        />
+                        <p className="list-group-item">
+                          {item.attributes.canonicalTitle}
+                        </p>
+                        <Link
+                          to={`anime/detail/${item.id}`}
+                          className="btn list-group-item"
+                        >
+                          Details
+                        </Link>
+                      </div>
+                      <br />
+                    </div>
+                  ))}
                 </div>
               </React.Fragment>
             );

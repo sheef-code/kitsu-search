@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 
 const Context = React.createContext();
-
 const reducer = (state, action) => {
   switch (action.type) {
     case "SEARCH_NAME":
       return {
         ...state,
-        anime_list: action.payload,
+        trending_anime: action.payload,
+        random_anime: action.payload,
         heading: "Search Results"
       };
     default:
@@ -18,18 +18,44 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
   state = {
-    anime_list: [],
-    heading: "Top Rated Anime",
+    trending_anime: [],
+    random_anime: [],
+    categories: [],
+    heading: "Trending This Week",
+    heading2: "Random Anime",
+    heading3: "Categories",
     dispatch: action => this.setState(state => reducer(state, action))
   };
 
   componentDidMount() {
     axios
+      .get("https://kitsu.io/api/edge/categories/")
+      .then(res => {
+        const value = res.data.data;
+        this.setState({
+          categories: value
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    axios
       .get("https://kitsu.io/api/edge/trending/anime")
       .then(res => {
         const value = res.data.data;
         this.setState({
-          anime_list: value
+          trending_anime: value
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    axios
+      .get("https://kitsu.io/api/edge/anime")
+      .then(res => {
+        const value = res.data.data;
+        this.setState({
+          random_anime: value
         });
       })
       .catch(function(error) {

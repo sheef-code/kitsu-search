@@ -2,6 +2,7 @@ body {
   font: 400 15px Lato, sans-serif;
   line-height: 1.8;
   color: #818181;
+  background-color: #f7f7f7;
 }
 
 img {
@@ -14,7 +15,6 @@ h2 {
   text-transform: uppercase;
   color: #303030;
   font-weight: 600;
-  margin-bottom: 30px;
 }
 
 #about {
@@ -72,10 +72,11 @@ label:focus,
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.input-group {
-  width: 500px;
-  margin: 0 auto;
+
+#searchform {
+  padding-top: 5em;
 }
+
 .container-fluid {
   padding: 60px 50px;
 }
@@ -180,11 +181,16 @@ label:focus,
 .navbar li a,
 .navbar .navbar-brand {
   color: #fff !important;
+  text-transform: uppercase;
+}
+
+.navbar-brand {
+  font: 600 15px Lato, sans-serif;
 }
 .navbar-nav li a:hover,
 .navbar-nav li.active a {
-  color: #402f3f !important;
-  background-color: #fff !important;
+  color: #fff !important;
+  background-color: #000 !important;
 }
 .navbar-default .navbar-toggle {
   border-color: transparent;
@@ -192,6 +198,12 @@ label:focus,
 }
 .special {
   padding: 2px;
+}
+.dbg {
+  background: #333;
+  border: 1px solid #fff;
+  text-align: -webkit-center;
+  padding-top: 1rem;
 }
 .col-2dot4,
 .col-sm-2dot4,
@@ -239,6 +251,10 @@ label:focus,
     flex: 0 0 20%;
     max-width: 20%;
   }
+}
+
+.list-group-item {
+  min-height: 3.5em;
 }
 footer .glyphicon {
   font-size: 20px;

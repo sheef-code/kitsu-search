@@ -7,6 +7,9 @@ class Navigation extends Component {
         <nav className="navbar navbar-default navbar-fixed-top">
           <div className="container">
             <div className="navbar-header">
+              <a class="navbar-brand" href="#">
+                Anime-Index
+              </a>
               <button
                 type="button"
                 className="navbar-toggle"
@@ -20,6 +23,9 @@ class Navigation extends Component {
             </div>
             <div className="collapse navbar-collapse" id="myNavbar">
               <ul className="nav navbar-nav navbar-right">
+                <li>
+                  <Link to="/">HOME</Link>
+                </li>
                 <li>
                   <Link to="/about">ABOUT</Link>
                 </li>

@@ -35,9 +35,12 @@ class Search extends Component {
         {value => {
           const { dispatch } = value;
           return (
-            <div className="jumbotron text-center">
-              <h1> Anime Info Search</h1>
-              <form onSubmit={this.handleSubmit.bind(this, dispatch)}>
+            <React.Fragment>
+              <form
+                className="container"
+                id="searchform"
+                onSubmit={this.handleSubmit.bind(this, dispatch)}
+              >
                 <div className="input-group">
                   <input
                     name="text"
@@ -58,7 +61,7 @@ class Search extends Component {
                   </div>
                 </div>
               </form>
-            </div>
+            </React.Fragment>
           );
         }}
       </Consumer>
