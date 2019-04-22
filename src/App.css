@@ -34,6 +34,10 @@ h2 {
   margin-left: 30px;
 }
 
+.card-body {
+  color: #fff;
+}
+
 h4 {
   font-size: 19px;
   line-height: 1.375em;
@@ -162,8 +166,8 @@ label:focus,
 }
 .btn-custom {
   color: #fff;
-  background-color: #000;
-  border-color: #ccc;
+  background-color: #333;
+  border-color: #333;
 }
 .btn-custom:hover {
   color: #fff;
@@ -255,6 +259,7 @@ label:focus,
 
 .list-group-item {
   min-height: 3.5em;
+  color: #575757;
 }
 footer .glyphicon {
   font-size: 20px;

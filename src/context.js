@@ -8,7 +8,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         trending_anime: action.payload,
-        random_anime: action.payload,
         heading: "Search Results"
       };
     default:
@@ -23,18 +22,20 @@ export class Provider extends Component {
     categories: [],
     heading: "Trending This Week",
     heading2: "Random Anime",
-    heading3: "Categories",
+    heading3: "Top Genres",
     dispatch: action => this.setState(state => reducer(state, action))
   };
 
   componentDidMount() {
     axios
-      .get("https://kitsu.io/api/edge/categories/")
+      .get(
+        "https://kitsu.io/api/edge/genres?page%5Blimit%5D=10&page%5Boffset%5D=0"
+      )
       .then(res => {
-        const value = res.data.data;
-        this.setState({
-          categories: value
-        });
+        this.setState(state => ({
+          ...state,
+          categories: [...state.categories, ...res.data.data]
+        }));
       })
       .catch(function(error) {
         console.log(error);
@@ -50,17 +51,21 @@ export class Provider extends Component {
       .catch(function(error) {
         console.log(error);
       });
-    axios
-      .get("https://kitsu.io/api/edge/anime")
-      .then(res => {
-        const value = res.data.data;
-        this.setState({
-          random_anime: value
+    for (let page = 0; page < 400; page += 10) {
+      axios
+        .get(
+          `https://kitsu.io/api/edge/anime?page%5Blimit%5D=10&page%5Boffset%5D=${page}`
+        )
+        .then(res => {
+          const value = res.data.data;
+          this.setState({
+            random_anime: value
+          });
+        })
+        .catch(function(error) {
+          console.log(error);
         });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    }
   }
 
   render() {

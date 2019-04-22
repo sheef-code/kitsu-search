@@ -23,20 +23,6 @@ export default class Anime extends Component {
             return (
               <React.Fragment>
                 <div class="container">
-                  <h2 className="text-left">{heading3}</h2>
-                  {categories.map(item => (
-                    <div
-                      className="dbg col-2dot4 col-sm-2dot4 col-md-2dot4 col-lg-2dot4 col-xl-2dot4"
-                      key={item.id}
-                    >
-                      <div className="card-body h-100 text-center align-middle">
-                        {item.attributes.title}
-                      </div>
-                      <br />
-                    </div>
-                  ))}
-                </div>
-                <div class="container">
                   <h2 className="text-left">{heading}</h2>
                   {trending_anime.slice(0, 5).map(item => (
                     <div
@@ -58,6 +44,20 @@ export default class Anime extends Component {
                         >
                           Details
                         </Link>
+                      </div>
+                      <br />
+                    </div>
+                  ))}
+                </div>
+                <div class="container">
+                  <h2 className="text-left">{heading3}</h2>
+                  {categories.map(item => (
+                    <div
+                      className="dbg col-2dot4 col-sm-2dot4 col-md-2dot4 col-lg-2dot4 col-xl-2dot4"
+                      key={item.id}
+                    >
+                      <div className="card-body h-100 text-center align-middle">
+                        {item.attributes.name}
                       </div>
                       <br />
                     </div>
